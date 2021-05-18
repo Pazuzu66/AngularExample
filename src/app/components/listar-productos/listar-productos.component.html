@@ -1,0 +1,36 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2"> <!--offset-lg-2 deja dos columnas vacias a la izquierda-->
+            <div class="card text-white border-dark mb-3 mx-auto"> <!--con mx-auto centramos las card-->               
+                    <div class="card-body text-center">
+                        <span class="titulo">Listado de Productos</span>
+                        <button class="btn btn-outline-primary float-end" routerLink='/crear-producto' >Nuevo Producto</button>
+        <!--Aqui Cuate--><table *ngIf='listProductos.length > 0' class="table table-hover mt-4">
+                            <thead>
+                              <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Ubicación</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+             <!--Aqui Cuate--><tr *ngFor="let producto of listProductos" class="table-dark">
+                                    <th scope="row">{{producto.nombre}}</th>
+                                    <td>{{producto.categoria}}</td>
+                                    <td>{{producto.ubicacion}}</td>
+                                    <td>{{producto.precio | currency: 'USD'}}</td>
+                                    <td>
+                                        <i [routerLink]="['/editar-producto',producto._id]" class="far fa-edit text-primary"></i>
+                                        <i (click)="eliminarProducto(producto._id)" class="fas fa-trash-alt text-danger"></i>
+                                    </td>
+                                </tr>                               
+                            </tbody>
+                        </table>
+                        <h5 *ngIf='listProductos.length == 0' class="mt-5">No Hay productos para mostrar</h5>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
